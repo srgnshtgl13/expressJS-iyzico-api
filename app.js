@@ -12,13 +12,19 @@ app.use(bodyParser.json());
 
 const Iyzipay = require('iyzipay');
 
-const iyzipay = new Iyzipay({
-    apiKey: 'sandbox-ZqIVMXJsPJ10MEo5AXT9d89wByYaQ6SW',
-    secretKey: 'sandbox-32KSjULZt3EfbZz6TQcPiBENUmVEFwPw',
+/* const iyzipay = new Iyzipay({
+    apiKey: 'apiKey',
+    secretKey: 'secretKey',
     uri: 'https://sandbox-api.iyzipay.com'
-});
+}); */
 
 app.post('/order', (req, res) => {
+
+    const iyzipay = new Iyzipay({
+        apiKey: req.body.iyziPayApiKey,
+        secretKey: req.body.iyziPayApiSecret,
+        uri: 'https://sandbox-api.iyzipay.com'
+    });
     const {
         price, userID, name, surname, email, identityNumber,
         contactName, gsmNumber, city, country, address, zipCode,
